@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destiny: {fileID: 0}
-  speed: 6
+  speed: 3
   limitDistance: 0.5
 --- !u!114 &3623828867816115593
 MonoBehaviour:
