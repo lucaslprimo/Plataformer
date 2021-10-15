@@ -2057,7 +2057,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &519420028
 GameObject:
@@ -2289,6 +2289,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 173601836, guid: f8c8ceb1de0f9e44cb16b9c30eeda584, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4188099
+      objectReference: {fileID: 0}
+    - target: {fileID: 173601836, guid: f8c8ceb1de0f9e44cb16b9c30eeda584, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.05456686
+      objectReference: {fileID: 0}
     - target: {fileID: 1681676973807198477, guid: f8c8ceb1de0f9e44cb16b9c30eeda584,
         type: 3}
       propertyPath: m_Name
@@ -2307,7 +2315,7 @@ PrefabInstance:
     - target: {fileID: 2130440556309560729, guid: f8c8ceb1de0f9e44cb16b9c30eeda584,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 2130440556309560729, guid: f8c8ceb1de0f9e44cb16b9c30eeda584,
         type: 3}
@@ -2348,6 +2356,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451446575390644378, guid: f8c8ceb1de0f9e44cb16b9c30eeda584,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451446575390644378, guid: f8c8ceb1de0f9e44cb16b9c30eeda584,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8c8ceb1de0f9e44cb16b9c30eeda584, type: 3}

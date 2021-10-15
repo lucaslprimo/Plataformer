@@ -7,8 +7,15 @@ public class PlataformerFollow : MonoBehaviour
     public Transform destiny;
 
     private IFollowListener listener;
-    public float speed;
-    public float limitDistance;
+    [SerializeField] float speed;
+    [SerializeField] float limitDistance;
+    private bool walking = false;
+    private Vector2 movement;
+
+    private void Start()
+    {
+        walking = false;
+    }
 
     public void SetListener(IFollowListener listener)
     {
@@ -29,23 +36,31 @@ public class PlataformerFollow : MonoBehaviour
     private void HandleFollowing()
     {
         if(Vector2.Distance(destiny.position,transform.position) > limitDistance){
+            walking = true;
             if (destiny.position.x > transform.position.x)
             {
-                listener.Move(Vector2.right * speed);
+                movement = Vector2.right * speed;
             }
             else if (destiny.position.x < transform.position.x)
             {
-                listener.Move(Vector2.left * speed);
+                movement = Vector2.left * speed;
             }
-
-            listener.IsWalking(true);
         }
         else
         {
-            listener.Move(Vector2.zero);
-            listener.IsWalking(false);
+            walking = false;
+            movement = Vector2.zero;
+            
         }
-        
     }
 
+    private void FixedUpdate()
+    {
+        listener.Move(movement);
+    }
+
+    private void LateUpdate()
+    {
+        listener.IsWalking(walking);
+    }
 }

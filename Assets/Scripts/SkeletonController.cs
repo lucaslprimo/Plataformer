@@ -18,6 +18,11 @@ public class SkeletonController : MonoBehaviour, CreatureBehaviour.ICreatureList
     public float freezeTime = 0.5f;
     public float pushMultiplier = 100f;
     private float freezeTimer;
+    private bool isGrounded;
+    [SerializeField] Transform groundCheckPos;
+    [SerializeField] Transform wallCheckPos;
+    [SerializeField] LayerMask groundLayer;
+    private bool isWalled;
 
     void Awake()
     {
@@ -60,7 +65,10 @@ public class SkeletonController : MonoBehaviour, CreatureBehaviour.ICreatureList
 
     private void Update()
     {
+        CheckIfHitWall();
+        CheckIfGrounded();
         HandleDirection();
+        
     }
 
     private void HandleDirection()
@@ -86,16 +94,29 @@ public class SkeletonController : MonoBehaviour, CreatureBehaviour.ICreatureList
         }
     }
 
+    void CheckIfHitWall()
+    {
+        isWalled = Physics2D.Raycast(wallCheckPos.position, new Vector2(transform.localScale.x, 0), 2f, groundLayer);
+    }
+
+    void CheckIfGrounded()
+    {
+        isGrounded = Physics2D.Raycast(groundCheckPos.position, Vector2.down, 0.1f, groundLayer);
+    }
+
     public void IsWalking(bool walking)
     {
         if (Time.time > freezeTimer)
         {
-            anim.SetBool("isWalking", walking);
-
-            if (!walking)
+            if (isGrounded && !isWalled)
             {
-                anim.SetTrigger("attack");
-                Freeze();
+                anim.SetBool("isWalking", walking);
+
+                if (!walking)
+                {
+                    anim.SetTrigger("attack");
+                    Freeze();
+                }
             }
         }        
     }
@@ -104,7 +125,14 @@ public class SkeletonController : MonoBehaviour, CreatureBehaviour.ICreatureList
     {
         if(Time.time > freezeTimer)
         {
-            body.velocity = velocity;
+            if (isGrounded && !isWalled)
+            { 
+                body.velocity = velocity;
+            }
+            else
+            {
+                body.velocity = Vector2.zero;
+            }
         }         
     }
 }
